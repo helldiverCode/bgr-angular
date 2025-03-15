@@ -1,6 +1,12 @@
 import { Routes } from '@angular/router';
-import { GameListComponent } from './game/game-list/game-list.component';
 
 export const routes: Routes = [
-  {path: '', component: GameListComponent}
+  { path: '', redirectTo: '/games', pathMatch: 'full' },
+  {
+    path: 'games',
+    loadComponent: () =>
+      import('./game/game-list/game-list.component').then(
+        (x) => x.GameListComponent
+      ),
+  },
 ];

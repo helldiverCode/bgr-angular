@@ -1,3 +1,4 @@
-<p>
-  game-list works!
-</p>
+<bgr-game-list-filter (searchEvent)="searchGame($event)"/>
+<div *ngFor="let game of games; trackBy:getGameId">
+  <bgr-game-list-item [game]="game"/>
+</div>
