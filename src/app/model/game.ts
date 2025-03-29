@@ -1,5 +1,5 @@
 export interface Game {
-  id?: string;               // Unique identifier
+  id?: number;               // Unique identifier
   name?: string;             // Game title
   description?: string;      // Brief game description
   category?: string;         // Board game category (e.g., strategy, party, card)

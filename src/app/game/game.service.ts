@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { GameFilter } from '../model/game-filter';
 import { Observable, of } from 'rxjs';
 import { Game } from '../model/game';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ import { Game } from '../model/game';
 export class GameService {
   games: Game[] = [
     {
-      id: '1',
+      id: 1,
       name: 'Catan',
       description: 'A strategy board game where players collect resources and build settlements.',
       category: 'Strategy',
@@ -26,7 +27,7 @@ export class GameService {
       inStock: 5
     },
     {
-      id: '2',
+      id: 2,
       name: 'Uno',
       description: 'A fast-paced card game where players match numbers and colors.',
       category: 'Card',
@@ -42,7 +43,7 @@ export class GameService {
       inStock: 0
     },
     {
-      id: '3',
+      id: 3,
       name: 'Dixit',
       description: 'A creative storytelling game with beautiful illustrated cards.',
       category: 'Party',
@@ -58,7 +59,7 @@ export class GameService {
       inStock: 5
     },
     {
-      id: '4',
+      id: 4,
       name: 'Chess',
       description: 'A classic strategy game played on an 8x8 board.',
       category: 'Strategy',
@@ -75,9 +76,14 @@ export class GameService {
     }
   ];
 
+  readonly backendUrl = environment.backendUrl;
+  readonly gameUrl = environment.gameUrl;
+  readonly gameSearchUrl = environment.gameSearchUrl;
+
   constructor(private http: HttpClient) {}
 
   getGames(filter: GameFilter): Observable<Game[]> {
-    return of(this.games);
+    // return of(this.games);
+    return this.http.post<Game[]>(this.backendUrl + this.gameSearchUrl, filter);
   }
 }
