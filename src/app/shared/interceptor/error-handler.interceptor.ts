@@ -4,14 +4,14 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
-// import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root' // No need to provide it manually in a module
 })
 export class HttpErrorInterceptor implements HttpInterceptor {
   private router = inject(Router);
-  // private snackBar = inject(MatSnackBar);
+  private snackBar = inject(MatSnackBar);
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
@@ -26,6 +26,9 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           switch (error.status) {
             case 400:
               errorMessage = 'Bad request. Please check your input.';
+              if (error.message) {
+                errorMessage += error.message;
+              }
               break;
             case 401:
               errorMessage = 'Unauthorized. Redirecting to login...';
@@ -46,11 +49,11 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         }
 
         // Show a notification to the user
-        /* this.snackBar.open(errorMessage, 'Close', {
+        this.snackBar.open(errorMessage, 'Close', {
           duration: 4000,
           verticalPosition: 'top',
           panelClass: ['snackbar-error'],
-        }); */
+        });
 
         return throwError(() => new Error(errorMessage));
       })
