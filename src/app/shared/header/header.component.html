@@ -1,3 +1,10 @@
-<p>
-  header works!
-</p>
+<mat-toolbar>
+  <span>Board game rental</span>
+  <span class="spacer"></span>
+  <button mat-raised-button color="accent" routerLink="/games">Games</button>
+  <button mat-raised-button color="accent" routerLink="/admin">Admin</button>
+
+  <button mat-raised-button color="warn" (click)="toggleAuth()">
+    {{ isLoggedIn ? 'Logout' : 'Login' }}
+  </button>
+</mat-toolbar>

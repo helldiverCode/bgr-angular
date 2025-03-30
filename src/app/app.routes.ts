@@ -9,4 +9,11 @@ export const routes: Routes = [
         (x) => x.GameListComponent
       ),
   },
+  {
+    path: 'admin',
+    loadComponent: () =>
+      import('./admin/admin.component').then(
+        (x) => x.AdminComponent
+      ),
+  },
 ];

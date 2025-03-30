@@ -83,7 +83,7 @@ export class GameService {
   constructor(private http: HttpClient) {}
 
   getGames(filter: GameFilter): Observable<Game[]> {
-    // return of(this.games);
-    return this.http.post<Game[]>(this.backendUrl + this.gameSearchUrl + 'a', filter);
+    return of(this.games);
+    // return this.http.post<Game[]>(this.backendUrl + this.gameSearchUrl, filter);
   }
 }

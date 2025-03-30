@@ -1,0 +1,31 @@
+mat-toolbar {
+  background-color: #1976d2 !important; /* Blue background */
+  color: white; /* Ensure text is readable */
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* Style links to match the theme */
+a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+/* Customize the login/logout button */
+.auth-button {
+  background-color: #ff9800; /* Orange */
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 5px 15px;
+  border: none;
+  cursor: pointer;
+}
+
+.auth-button:hover {
+  background-color: #f57c00; /* Darker orange on hover */
+}
